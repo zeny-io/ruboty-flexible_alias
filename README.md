@@ -1,8 +1,5 @@
 # Ruboty::FlexibleAlias
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruboty/flexible_alias`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -16,13 +13,42 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install ruboty-flexible_alias
-
 ## Usage
 
-TODO: Write usage instructions here
+### Register new alias
+
+```
+ruboty flexible [scoped] alias (original) -> (aliased)
+
+# ex:
+
+ruboty flexible alias hi (alnum) -> echo Hello, $1
+
+ruboty hi rosylilly
+> Hello, rosylilly
+
+# ex: scoped (availabled alias in registered room only)
+
+ruboty flexible scoped alias bye (alnum) -> echo Good bye, $1
+
+ruboty bye rosylilly
+> Good bye, rosylilly
+```
+
+Available matchers
+
+- `(alnum)` : `[[:alnum:]]`
+- `(digit)` : `[[:digit:]]`
+- `(graph)` : `[[:graph:]]`
+
+### Help
+
+```
+ruboty /list flexible alias\z/ - List flexible alias
+ruboty /delete flexible alias (?<alias>.+)\z/m - Delete flexible alias
+ruboty /flexible alias (?<original>.+?) -> (?<alias>.+)\z/m - Create flexible alias message
+ruboty /flexible scoped alias (?<original>.+?) -> (?<alias>.+)\z/m - Create flexible alias message
+```
 
 ## Development
 
@@ -32,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ruboty-flexible_alias.
+Bug reports and pull requests are welcome on GitHub at https://github.com/zeny-io/ruboty-flexible_alias.
 
 
 ## License
